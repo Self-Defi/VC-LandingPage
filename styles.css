@@ -61,7 +61,7 @@ body::before{
   position: relative;
   z-index: 1;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   padding: 24px 40px;
 }
@@ -214,26 +214,26 @@ body::before{
   color: rgba(255,255,255,0.55);
 }
 
-/* Modal */
-  .modal {
-  align-items: flex-start;
-  padding-top: 18vh;
-}
+/* MODAL (reliable iOS Safari overlay) */
+.modal{
   position: fixed;
   inset: 0;
+  z-index: 9999;
+
   display: none;
-  align-items: center;
-  justify-content: center;
+  place-items: center;
   padding: 24px;
-  z-index: 20;
 
   background: rgba(7,11,20,0.72);
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 
-.modal.show { display: flex; }
+.modal.show{
+  display: grid;
+}
 
-.modal-card {
+.modal-card{
   width: min(560px, 100%);
   border-radius: 18px;
   padding: 22px 22px 20px;
@@ -247,19 +247,19 @@ body::before{
   text-align: left;
 }
 
-.modal-head {
+.modal-head{
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
 }
 
-.modal-card h2 {
+.modal-card h2{
   margin: 0;
   font-size: 1.15rem;
 }
 
-.icon-btn {
+.icon-btn{
   border: 1px solid rgba(255,255,255,0.14);
   background: rgba(255,255,255,0.04);
   color: var(--text);
@@ -269,42 +269,45 @@ body::before{
   cursor: pointer;
 }
 
-.icon-btn:hover {
+.icon-btn:hover{
   border-color: rgba(217,70,141,0.55);
 }
 
-.modal-list {
+.modal-list{
   margin: 16px 0 14px;
   padding-left: 18px;
   color: rgba(255,255,255,0.78);
 }
 
-.modal-list li {
-  margin: 10px 0;
-}
+.modal-list li{ margin: 10px 0; }
 
-.modal-list strong {
+.modal-list strong{
   display: block;
   color: var(--text);
   margin-bottom: 3px;
 }
 
-.modal-list span {
+.modal-list span{
   display: block;
   color: rgba(255,255,255,0.62);
 }
 
-.modal-note {
+.modal-note{
   margin: 10px 0 16px;
   color: rgba(255,255,255,0.55);
   font-size: 0.92rem;
 }
 
-.modal-actions {
+.modal-actions{
   display: flex;
   gap: 12px;
   justify-content: flex-end;
   flex-wrap: wrap;
+}
+
+/* Prevent page scroll behind modal */
+body.modal-open{
+  overflow: hidden;
 }
 
 /* Mobile */
