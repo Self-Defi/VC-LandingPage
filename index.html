@@ -28,9 +28,7 @@
     <!-- Hero -->
     <section class="hero" aria-label="Hero">
       <h1>The Path From Niche Solution to Core Infrastructure</h1>
-      <p class="subhead">
-        Solve one real problem. Ship proof fast. Scale only what’s used.
-      </p>
+      <p class="subhead">Solve one real problem. Ship proof fast. Scale only what’s used.</p>
 
       <div class="hero-actions">
         <a class="cta primary"
@@ -40,6 +38,7 @@
           Build a Proof
         </a>
 
+        <!-- Modal trigger (no scroll) -->
         <button class="cta ghost" type="button" id="openPath">
           See the Path
         </button>
@@ -78,8 +77,8 @@
   </footer>
 
   <!-- Modal -->
-  <div class="modal" id="pathModal" aria-hidden="true" role="dialog" aria-modal="true">
-    <div class="modal-card">
+  <div class="modal" id="pathModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="How Vibe Coding Works">
+    <div class="modal-card" role="document">
       <div class="modal-head">
         <h2>How Vibe Coding Works</h2>
         <button class="icon-btn" type="button" id="closePath" aria-label="Close">✕</button>
@@ -125,25 +124,27 @@
     function openModal() {
       modal.classList.add('show');
       modal.setAttribute('aria-hidden', 'false');
+      document.body.classList.add('modal-open');
     }
 
     function closeModal() {
       modal.classList.remove('show');
       modal.setAttribute('aria-hidden', 'true');
+      document.body.classList.remove('modal-open');
     }
 
     openBtn.addEventListener('click', openModal);
     closeBtn.addEventListener('click', closeModal);
     closeBtn2.addEventListener('click', closeModal);
 
+    // Click outside the card to close
     modal.addEventListener('click', (e) => {
       if (e.target === modal) closeModal();
     });
 
+    // ESC to close
     document.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && modal.classList.contains('show')) {
-        closeModal();
-      }
+      if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
     });
   </script>
 </body>
