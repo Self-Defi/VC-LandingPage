@@ -331,15 +331,60 @@ body.modal-open{
   overflow: hidden;
 }
 
-/* Mobile */
-@media (max-width: 640px) {
-  .nav { padding: 18px 18px; }
-  .container { padding: 70px 18px 110px; }
-  .path { gap: 18px; }
-  .arrow { display: none; }
-  .modal-card { padding: 18px; }
+/* Mobile tightening */
+@media (max-width: 480px) {
+  .hero {
+    padding: 44px 18px 28px; /* less top/bottom, keep side breathing */
+  }
 
-  /* Brand downscale */
-  .brand-logo{ width:34px; height:34px; }
-  .brand-text{ font-size:0.9rem; }
+  h1 {
+    font-size: 34px;          /* was likely ~44-52 */
+    line-height: 1.08;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px;
+  }
+
+  .subhead {
+    font-size: 15px;
+    line-height: 1.4;
+    opacity: 0.85;
+    margin: 0 auto 18px;
+    max-width: 34ch;          /* keeps it readable */
+  }
+
+  .ctaRow {
+    gap: 12px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .btn {
+    width: min(320px, 100%);
+    padding: 12px 16px;
+  }
+
+  .pathRow {
+    margin-top: 26px;         /* pull it up */
+    gap: 18px;
+  }
+
+  .pathItem {
+    font-size: 13px;
+    line-height: 1.25;
+    max-width: 14ch;
+    text-align: center;
+  }
+
+  .footerNote {
+    padding: 18px 18px 30px;  /* keep it away from the iOS home bar */
+    opacity: 0.7;
+    font-size: 12px;
+  }
+}
+
+/* iOS safe area padding so bottom text never feels clipped */
+@supports (padding: max(0px)) {
+  .footerNote {
+    padding-bottom: max(30px, env(safe-area-inset-bottom));
+  }
 }
