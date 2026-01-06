@@ -1,0 +1,173 @@
+:root {
+  --bg: #070b14;
+  --bg-soft: #0b1220;
+  --grid: rgba(255,255,255,0.04);
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.65);
+  --accent: #d9468d;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+  background: radial-gradient(1200px 600px at top, var(--bg-soft), var(--bg));
+  color: var(--text);
+}
+
+/* Subtle grid background */
+.grid-bg {
+  position: fixed;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 40px 40px;
+  mask-image: radial-gradient(circle at top, black 40%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.nav {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 40px;
+}
+
+.brand {
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+.container {
+  position: relative;
+  z-index: 1;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 80px 24px 120px;
+  text-align: center;
+}
+
+.hero h1 {
+  font-size: clamp(2.2rem, 4vw, 3.2rem);
+  line-height: 1.15;
+  margin-bottom: 16px;
+}
+
+.subhead {
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+}
+
+/* CTAs */
+.cta {
+  padding: 12px 22px;
+  border-radius: 999px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cta.primary {
+  background: var(--accent);
+  color: #fff;
+}
+
+.cta.primary:hover {
+  transform: translateY(-1px);
+}
+
+.cta.ghost {
+  border: 1px solid rgba(255,255,255,0.25);
+  color: var(--text);
+}
+
+.cta.ghost:hover {
+  border-color: var(--accent);
+}
+
+/* Path */
+.path {
+  margin-top: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 28px;
+  flex-wrap: wrap;
+}
+
+.step {
+  max-width: 220px;
+}
+
+.step h3 {
+  font-size: 0.95rem;
+  font-weight: 500;
+  color: var(--muted);
+}
+
+.arrow {
+  color: var(--accent);
+  font-size: 1.6rem;
+}
+
+/* Icons */
+.icon {
+  margin: 0 auto 14px;
+  border: 2px solid var(--accent);
+}
+
+.icon.dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+}
+
+.icon.square {
+  width: 22px;
+  height: 22px;
+}
+
+.icon.network {
+  width: 26px;
+  height: 26px;
+  border-radius: 6px;
+  position: relative;
+}
+
+.icon.network::before,
+.icon.network::after {
+  content: "";
+  position: absolute;
+  inset: 6px;
+  border: 1px solid var(--accent);
+  opacity: 0.6;
+}
+
+.path-note {
+  margin-top: 32px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.footer {
+  position: relative;
+  z-index: 1;
+  padding: 24px;
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--muted);
+}
