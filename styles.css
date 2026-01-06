@@ -1,3 +1,4 @@
+/* styles.css */
 :root {
   --bg: #070b14;
   --bg-soft: #0b1220;
@@ -5,32 +6,55 @@
   --text: rgba(255,255,255,0.92);
   --muted: rgba(255,255,255,0.65);
   --accent: #d9468d;
+
+  --radius: 16px;
 }
 
-* {
-  box-sizing: border-box;
+* { box-sizing: border-box; }
+
+html, body {
+  height: 100%;
+  margin: 0;
+  background: var(--bg);
 }
 
 body {
-  margin: 0;
+  min-height: 100vh;
   font-family: system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  background: radial-gradient(1200px 600px at top, var(--bg-soft), var(--bg));
   color: var(--text);
+
+  /* Consistent dark gradient (no bottom band) */
+  background:
+    radial-gradient(1200px 700px at 50% 12%, var(--bg-soft) 0%, var(--bg) 68%),
+    linear-gradient(180deg, rgba(255,255,255,0.02), transparent 40%);
 }
 
-/* Subtle grid background */
+/* Optional subtle vignette highlight (keeps focus on hero) */
+body::before{
+  content:"";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  background: radial-gradient(900px 520px at 50% 14%, rgba(217,70,141,0.08), transparent 70%);
+}
+
+/* Subtle grid overlay — consistent intensity */
 .grid-bg {
   position: fixed;
   inset: 0;
+  pointer-events: none;
+  z-index: 0;
+
   background-image:
     linear-gradient(var(--grid) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid) 1px, transparent 1px);
-  background-size: 40px 40px;
-  mask-image: radial-gradient(circle at top, black 40%, transparent 80%);
-  pointer-events: none;
-  z-index: 0;
+
+  background-size: 44px 44px;
+  opacity: 0.55;
 }
 
+/* Top navigation */
 .nav {
   position: relative;
   z-index: 1;
@@ -41,8 +65,9 @@ body {
 }
 
 .brand {
-  font-weight: 600;
+  font-weight: 650;
   letter-spacing: 0.3px;
+  opacity: 0.95;
 }
 
 .container {
@@ -57,28 +82,32 @@ body {
 .hero h1 {
   font-size: clamp(2.2rem, 4vw, 3.2rem);
   line-height: 1.15;
-  margin-bottom: 16px;
+  margin: 0 0 16px;
 }
 
 .subhead {
   color: var(--muted);
   font-size: 1.1rem;
-  margin-bottom: 40px;
+  margin: 0 0 40px;
 }
 
 .hero-actions {
   display: flex;
   gap: 16px;
   justify-content: center;
+  flex-wrap: wrap;
 }
 
 /* CTAs */
 .cta {
   padding: 12px 22px;
   border-radius: 999px;
-  font-weight: 500;
+  font-weight: 600;
   text-decoration: none;
-  transition: all 0.2s ease;
+  transition: transform 0.18s ease, border-color 0.18s ease, filter 0.18s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .cta.primary {
@@ -88,15 +117,18 @@ body {
 
 .cta.primary:hover {
   transform: translateY(-1px);
+  filter: brightness(1.05);
 }
 
 .cta.ghost {
   border: 1px solid rgba(255,255,255,0.25);
   color: var(--text);
+  background: rgba(255,255,255,0.02);
 }
 
 .cta.ghost:hover {
   border-color: var(--accent);
+  transform: translateY(-1px);
 }
 
 /* Path */
@@ -109,25 +141,27 @@ body {
   flex-wrap: wrap;
 }
 
-.step {
-  max-width: 220px;
-}
+.step { max-width: 240px; }
 
 .step h3 {
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--muted);
+  font-size: 0.98rem;
+  font-weight: 600;
+  color: rgba(255,255,255,0.70);
+  margin: 12px 0 0;
 }
 
 .arrow {
   color: var(--accent);
   font-size: 1.6rem;
+  opacity: 0.95;
 }
 
 /* Icons */
 .icon {
-  margin: 0 auto 14px;
+  margin: 0 auto;
   border: 2px solid var(--accent);
+  background: rgba(217,70,141,0.06);
+  box-shadow: 0 0 0 1px rgba(217,70,141,0.08) inset;
 }
 
 .icon.dot {
@@ -139,12 +173,13 @@ body {
 .icon.square {
   width: 22px;
   height: 22px;
+  border-radius: 6px;
 }
 
 .icon.network {
   width: 26px;
   height: 26px;
-  border-radius: 6px;
+  border-radius: 8px;
   position: relative;
 }
 
@@ -155,19 +190,30 @@ body {
   inset: 6px;
   border: 1px solid var(--accent);
   opacity: 0.6;
+  border-radius: 4px;
 }
 
 .path-note {
-  margin-top: 32px;
-  color: var(--muted);
-  font-size: 0.9rem;
+  margin: 32px auto 0;
+  max-width: 720px;
+  color: rgba(255,255,255,0.55);
+  font-size: 0.95rem;
 }
 
+/* Footer */
 .footer {
   position: relative;
   z-index: 1;
-  padding: 24px;
+  padding: 28px 24px 34px;
   text-align: center;
-  font-size: 0.8rem;
-  color: var(--muted);
+  font-size: 0.85rem;
+  color: rgba(255,255,255,0.55);
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  .nav { padding: 18px 18px; }
+  .container { padding: 70px 18px 110px; }
+  .path { gap: 18px; }
+  .arrow { display: none; } /* cleaner wrap on small screens */
 }
