@@ -215,7 +215,10 @@ body::before{
 }
 
 /* Modal */
-.modal {
+  .modal {
+  align-items: flex-start;
+  padding-top: 18vh;
+}
   position: fixed;
   inset: 0;
   display: none;
