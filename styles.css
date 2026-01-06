@@ -173,11 +173,8 @@ body::before{
   margin: 12px 0 0;
 }
 
-.arrow {
-  color: var(--accent);
-  font-size: 1.6rem;
-  opacity: 0.95;
-}
+/* Arrows are removed from HTML, but keep this safe */
+.arrow { display: none; }
 
 /* Icons */
 .icon {
@@ -231,6 +228,7 @@ body::before{
   text-align: center;
   font-size: 0.85rem;
   color: rgba(255,255,255,0.55);
+  padding-bottom: calc(34px + env(safe-area-inset-bottom));
 }
 
 /* =========================
@@ -331,60 +329,56 @@ body.modal-open{
   overflow: hidden;
 }
 
-/* Mobile tightening */
-@media (max-width: 480px) {
-  .hero {
-    padding: 44px 18px 28px; /* less top/bottom, keep side breathing */
-  }
+/* =========================
+   MOBILE FIX (matches your classes)
+========================= */
+@media (max-width: 520px) {
+  .nav { padding: 16px 18px; }
+  .brand-logo { width: 34px; height: 34px; }
 
-  h1 {
-    font-size: 34px;          /* was likely ~44-52 */
+  .container { padding: 54px 18px 84px; }
+
+  .hero h1{
+    font-size: 34px;
     line-height: 1.08;
-    letter-spacing: -0.02em;
     margin: 0 0 12px;
+    letter-spacing: -0.02em;
   }
 
-  .subhead {
+  .subhead{
     font-size: 15px;
-    line-height: 1.4;
-    opacity: 0.85;
+    line-height: 1.45;
     margin: 0 auto 18px;
-    max-width: 34ch;          /* keeps it readable */
+    max-width: 34ch;
+    opacity: 0.85;
   }
 
-  .ctaRow {
+  /* stack CTA buttons */
+  .hero-actions{
+    display: grid;
+    grid-template-columns: 1fr;
     gap: 12px;
-    flex-wrap: wrap;
-    justify-content: center;
+    justify-items: center;
   }
 
-  .btn {
-    width: min(320px, 100%);
-    padding: 12px 16px;
+  .hero-actions .cta{
+    width: min(340px, 100%);
   }
 
-  .pathRow {
-    margin-top: 26px;         /* pull it up */
+  /* stack path steps vertically */
+  .path{
+    margin-top: 52px;
+    flex-direction: column;
     gap: 18px;
   }
 
-  .pathItem {
-    font-size: 13px;
-    line-height: 1.25;
-    max-width: 14ch;
-    text-align: center;
+  .step{
+    max-width: 340px;
+    width: 100%;
   }
 
-  .footerNote {
-    padding: 18px 18px 30px;  /* keep it away from the iOS home bar */
-    opacity: 0.7;
-    font-size: 12px;
-  }
-}
-
-/* iOS safe area padding so bottom text never feels clipped */
-@supports (padding: max(0px)) {
-  .footerNote {
-    padding-bottom: max(30px, env(safe-area-inset-bottom));
+  .step h3{
+    font-size: 0.95rem;
+    margin-top: 10px;
   }
 }
