@@ -2,12 +2,14 @@
 :root {
   --bg: #070b14;
   --bg-soft: #0b1220;
+
+  /* Subtle grid line color */
   --grid: rgba(255,255,255,0.04);
+
   --text: rgba(255,255,255,0.92);
   --muted: rgba(255,255,255,0.65);
-  --accent: #d9468d;
 
-  --radius: 16px;
+  --accent: #d9468d;
 }
 
 * { box-sizing: border-box; }
@@ -16,6 +18,7 @@ html, body {
   height: 100%;
   margin: 0;
   background: var(--bg);
+  scroll-behavior: smooth; /* smooth anchor scroll */
 }
 
 body {
@@ -29,7 +32,7 @@ body {
     linear-gradient(180deg, rgba(255,255,255,0.02), transparent 40%);
 }
 
-/* Optional subtle vignette highlight (keeps focus on hero) */
+/* Subtle vignette highlight (keeps focus on hero) */
 body::before{
   content:"";
   position: fixed;
