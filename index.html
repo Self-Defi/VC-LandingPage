@@ -1,4 +1,3 @@
-<!-- index.html -->
 <!doctype html>
 <html lang="en">
 <head>
@@ -16,37 +15,6 @@
   <link rel="stylesheet" href="styles.css" />
 </head>
 
-<div id="pathModal" class="modal" aria-hidden="true">
-  <div class="modal-card">
-    <h2>How Vibe Coding Works</h2>
-
-    <ol>
-      <li><strong>Define one real problem</strong><br>
-        Describe a single pain point — not a full product.</li>
-
-      <li><strong>Generate a working proof</strong><br>
-        Get a clear structure: scope, constraints, and next steps.</li>
-
-      <li><strong>Expand only if it’s used</strong><br>
-        Scale after validation, not before.</li>
-    </ol>
-
-    <p class="modal-note">
-      Nothing is uploaded. Everything runs locally in your browser.
-    </p>
-
-    <div class="modal-actions">
-      <a class="cta primary"
-         href="https://self-defi.github.io/-Vibe-Coding-Dashboard-/"
-         target="_blank"
-         rel="noopener">
-        Build a Proof
-      </a>
-      <button class="cta ghost" onclick="closeModal()">Close</button>
-    </div>
-  </div>
-</div>
-  
 <body>
   <!-- Subtle grid overlay -->
   <div class="grid-bg" aria-hidden="true"></div>
@@ -76,11 +44,15 @@
            rel="noopener">
           Build a Proof
         </a>
-        <a class="cta ghost" href="#path">See the Path</a>
+
+        <!-- Opens modal (no scroll) -->
+        <button class="cta ghost" type="button" id="openPath">
+          See the Path
+        </button>
       </div>
     </section>
 
-    <!-- Path Diagram -->
+    <!-- Path Diagram (still visible on page) -->
     <section id="path" class="path" aria-label="The Path">
       <div class="step">
         <div class="icon dot" aria-hidden="true"></div>
@@ -110,6 +82,76 @@
   <footer class="footer">
     Powered by <strong>Self-Defi</strong> — Sovereign-first infrastructure
   </footer>
+
+  <!-- Modal -->
+  <div class="modal" id="pathModal" aria-hidden="true" role="dialog" aria-modal="true" aria-label="How Vibe Coding Works">
+    <div class="modal-card" role="document">
+      <div class="modal-head">
+        <h2>How Vibe Coding Works</h2>
+        <button class="icon-btn" type="button" id="closePath" aria-label="Close">✕</button>
+      </div>
+
+      <ol class="modal-list">
+        <li>
+          <strong>Define one real problem</strong>
+          <span>Describe a single pain point — not a full product.</span>
+        </li>
+        <li>
+          <strong>Generate a working proof</strong>
+          <span>Get a clear structure: scope, constraints, and next steps.</span>
+        </li>
+        <li>
+          <strong>Expand only if it’s used</strong>
+          <span>Scale after validation, not before.</span>
+        </li>
+      </ol>
+
+      <p class="modal-note">
+        Nothing is uploaded. Everything runs locally in your browser.
+      </p>
+
+      <div class="modal-actions">
+        <a class="cta primary"
+           href="https://self-defi.github.io/-Vibe-Coding-Dashboard-/"
+           target="_blank"
+           rel="noopener">
+          Build a Proof
+        </a>
+        <button class="cta ghost" type="button" id="closePath2">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const modal = document.getElementById('pathModal');
+    const openBtn = document.getElementById('openPath');
+    const closeBtn = document.getElementById('closePath');
+    const closeBtn2 = document.getElementById('closePath2');
+
+    function openModal() {
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+    }
+
+    function closeModal() {
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+    closeBtn2.addEventListener('click', closeModal);
+
+    // Click outside to close
+    modal.addEventListener('click', (e) => {
+      if (e.target === modal) closeModal();
+    });
+
+    // ESC to close
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && modal.classList.contains('show')) closeModal();
+    });
+  </script>
 </body>
 </html>
 
