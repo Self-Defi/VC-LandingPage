@@ -56,7 +56,9 @@ body::before{
   opacity: 0.55;
 }
 
-/* Top navigation */
+/* =========================
+   Top navigation
+========================= */
 .nav {
   position: relative;
   z-index: 1;
@@ -66,10 +68,27 @@ body::before{
   padding: 24px 40px;
 }
 
-.brand {
-  font-weight: 650;
-  letter-spacing: 0.3px;
-  opacity: 0.95;
+/* Brand block (logo + text) */
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  font-weight:650;
+  letter-spacing:.3px;
+  opacity:.95;
+}
+
+.brand-logo{
+  width:40px;
+  height:40px;
+  object-fit:contain;
+  flex-shrink:0;
+  filter: drop-shadow(0 8px 22px rgba(0,0,0,0.45));
+}
+
+.brand-text{
+  font-size:0.95rem;
+  line-height:1;
 }
 
 .container {
@@ -214,7 +233,9 @@ body::before{
   color: rgba(255,255,255,0.55);
 }
 
-/* MODAL (reliable iOS Safari overlay) */
+/* =========================
+   MODAL (reliable iOS Safari overlay)
+========================= */
 .modal{
   position: fixed;
   inset: 0;
@@ -317,34 +338,8 @@ body.modal-open{
   .path { gap: 18px; }
   .arrow { display: none; }
   .modal-card { padding: 18px; }
-}
 
-.brand{
-  display:flex;
-  align-items:center;
-  gap:12px;
-  font-weight:600;
-  letter-spacing:0.3px;
-}
-
-.brand-logo{
-  width:36px;
-  height:36px;
-  object-fit:contain;
-  filter: drop-shadow(0 6px 18px rgba(0,0,0,0.35));
-}
-
-.brand-text{
-  font-size:0.95rem;
-  opacity:0.95;
-}
-
-@media (max-width:520px){
-  .brand-logo{
-    width:32px;
-    height:32px;
-  }
-  .brand-text{
-    font-size:0.9rem;
-  }
+  /* Brand downscale */
+  .brand-logo{ width:34px; height:34px; }
+  .brand-text{ font-size:0.9rem; }
 }
